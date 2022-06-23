@@ -99,27 +99,45 @@ class BinaryTree {
       }
     }
   }
+
+  ifNodeExists(node, key) {
+    if (!node) {
+      return false;
+    }
+
+    if (node.value === key) {
+      return true;
+    }
+
+    let res1 = this.ifNodeExists(node.left, key);
+    if (res1) {
+      return res1;
+    }
+
+    let res2 = this.ifNodeExists(node.right, key);
+    return res2;
+  }
 }
 
 const myTree = new BinaryTree();
 
-myTree.add(8);
-myTree.add(2);
-myTree.add(1);
-myTree.add(11);
-myTree.add(10);
-myTree.add(54);
-myTree.add(4);
-myTree.add(5);
-myTree.add(6);
-myTree.add(8);
+myTree.add('abc');
+myTree.add('cbs');
+myTree.add('zkl');
+myTree.add('pqw');
+myTree.add('bac');
+myTree.add('klm');
+myTree.add('zyu');
+myTree.add('ter');
 
-console.log(myTree);
+// console.log(myTree);
 
 // myTree.treverseDFS((node) => {
 //   console.log(node.value);
 // }, 'inOrder');
 
-myTree.treverseBFS((node) => {
-  console.log(node.value);
-});
+// myTree.treverseBFS((node) => {
+//   console.log(node.value);
+// });
+
+console.log(myTree.ifNodeExists(myTree.root, 'zkl'));
